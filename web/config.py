@@ -13,7 +13,7 @@ class BaseConfig:
     CONFERENCE_ID = 1
     SECRET_KEY = 'LWd2tzlprdGHCIPHTd4tp5SBFgDszm' 
     SERVICE_BUS_CONNECTION_STRING ='Endpoint=sb://nd081sbs.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=fd2hl9bwFNlGFlpdPqGWIWOV8h0jQjzzKhFm3uxnR0w=' #TODO: Update value
-    SERVICE_BUS_QUEUE_NAME ='notificationqueue'
+    SERVICE_BUS_QUEUE_NAME ='nd081-c3-notification-queue'
     ADMIN_EMAIL_ADDRESS: 'info@techconf.com'
     SENDGRID_API_KEY = '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"'
 

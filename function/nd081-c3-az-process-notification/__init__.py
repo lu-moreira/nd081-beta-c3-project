@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 import pathlib
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-
+ADMIN_EMAIL_ADDRESS = os.getenv('ADMIN_EMAIL_ADDRESS')
 
 class NotificationEntity:
     def __init__(self, id, status, message, subject, completedDate):
@@ -117,7 +117,7 @@ def send_email(email, subject, message):
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         response = sg.send(
             Mail(
-                from_email='lmarquesmoreira@outlook.com',
+                from_email=ADMIN_EMAIL_ADDRESS,
                 to_emails=email,
                 subject=subject,
                 html_content='<strong>{}</strong>'.format(message)
@@ -134,9 +134,14 @@ SSL_PATH = get_ssl_cert()
 
 
 def main(message: func.ServiceBusMessage):
-    notification_id = int(message.get_body().decode('utf-8'))
-    logging.info(
-        'Python ServiceBus queue trigger processed message: %s', notification_id)
+    notification_id = None
+    try:
+        notification_id = int(message.get_body().decode('utf-8'))
+        logging.info(
+            'Python ServiceBus queue trigger processed message: %s', notification_id)
+    except Exception as e:
+        logging.error('Invalid entry, skipping message {}'.format(message.get_body().decode('utf-8')))
+        return
 
     conn = None
     cur = None
