@@ -63,9 +63,65 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 
 | Azure Resource | Service Tier | Monthly Cost |
 | ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
+| *Azure Postgres Database* |   basic compute gen5 & basic storage  |       $1.45       |
+| *Azure Service Bus*   |      --  |     < $0.01         |
+| *Azure App Service Plan* | Basic Tier | < $0.0.1 |
+| *Azure App Service*                   |      Free Tier   |       $0       |
+| *Azure Storage Account* | bandwidth & tables & tiered block blob | < $0.01 |
+
+## Screenshots
+Please take a look at the folder `screenshots`, there we have all available screenshots of the app and environment.
+
+#### About the requirements,
+
+1. Migrate Web Applications - 2 Screenshots
+
+   11. Screenshot of Azure Resource showing the App Service Plan.
+   
+         File: `screenshots/az_web_app_view_.png`
+
+   12. Screenshot of the deployed Web App running. The screenshot should be fullscreen showing the URL and application running.
+
+         File: `screenshots/app_running_.png`
+
+2. Migrate Database - 2 Screenshots
+
+   21. Screenshot of the Azure Resource showing the Azure Database for PostgreSQL server.
+
+         File: `screenshots/az_database_view_.png`
+
+   22. Screenshot of the Web App successfully loading the list of attendees and notifications from the deployed website.
+
+         Files:
+         - `screenshots/app_attendees_list_view_.png`
+         - `screenshots/app_notification_status_list_view_.png`
+
+3. Migrate Background Process - 4 Screenshots
+
+   31. Screenshot of the Azure Function App running in Azure, showing the function name and the function app plan.
+
+         File: `screenshots/az_function_view.png`
+
+   32. Screenshots of the following showing functionality of the deployed site:
+
+         321. Submitting a new notification.
+         
+               File: `screenshots/app_before_sending_notification_empty_full_view.png`
+
+         322. Screenshot of filled out Send Notification form.
+
+               File: `screenshots/app_before_sending_notification_full_view.png`
+
+
+4. Notification processed after executing the Azure function.
+
+   41. Screenshot of the Email Notifications List showing the notification status as Notifications submitted.
+
+         File: `screenshots/app_after_sending_notification_submitted_view.png`
+
+   42. Screenshot of the Email Notifications List showing the notification status as Notified X attendees.
+
+         File: `screenshots/app_after_sending_notification_full_view.png`
 
 ## Architecture Explanation
 This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
