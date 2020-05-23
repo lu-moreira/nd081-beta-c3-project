@@ -7,6 +7,8 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import pathlib
 
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
 
 class NotificationEntity:
     def __init__(self, id, status, message, subject, completedDate):
@@ -108,8 +110,24 @@ def closeDb(cursor, connection):
 
 
 def send_email(email, subject, message):
-    logging.info('Sending email to {} with subject {} and message {}'.format(
-        email, subject, message))
+    logging.info('SENDGRID KEY: {} - Sending email to {} with subject {} and message {}'.format(
+        SENDGRID_API_KEY, email, subject, message))
+
+    try:
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(
+            Mail(
+                from_email='lmarquesmoreira@outlook.com',
+                to_emails=email,
+                subject=subject,
+                html_content='<strong>{}</strong>'.format(message)
+            )
+        )
+        if response.status_code > 200:
+            return True
+    except Exception as e:
+        logging.error('SEND_MAIL Exception: {}'.format(str(e)))
+    return False
 
 
 SSL_PATH = get_ssl_cert()
