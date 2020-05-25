@@ -69,6 +69,42 @@ Complete a month cost analysis of each Azure resource to give an estimate total 
 | *Azure App Service*                   |      Free Tier   |       $0       |
 | *Azure Storage Account* | bandwidth & tables & tiered block blob | < $0.01 |
 
+## Architecture Explanation
+_ _This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function._
+
+The archicture selected for this app, is basead on following key points:
+- Decoupling app behavior to improve code quality, enable separates teams and releases
+- Better scale for each component of the app
+- Better pay out of the app, because instead of paying for the total app we'll pay for each component
+
+For this app, which is not so big we choose to deploy it in Azure because the SaaS service for Web Apps and Serveless Apps. In Azure, for Web and Function Apps we can use the free tier and also scale up or down basead on the trafic of our app. Given that we have decoupled the app into frontend and functions also we enable the ability to do separate releases and scales which is better for the cost-effectiveness.
+
+---
+## Project Rubric
+
+App URI: https://nd081-c3-web-dev.azurewebsites.net
+
+## Architecture Explanation
+
+The archicture selected for this app, is basead on following key points:
+- Decoupling app behavior to improve code quality, enable separates teams and releases
+- Better scale for each component of the app
+- Better pay out of the app, because instead of paying for the total app we'll pay for each component
+
+For this app, which is not so big we choose to deploy it in Azure because the SaaS service for Web Apps and Serveless Apps. In Azure, for Web and Function Apps we can use the free tier and also scale up or down basead on the trafic of our app. Given that we have decoupled the app into frontend and functions also we enable the ability to do separate releases and scales which is better for the cost-effectiveness. 
+
+## Monthly Cost Analysis
+
+| Azure Resource | Service Tier | Monthly Cost |
+| ------------ | ------------ | ------------ |
+| *Azure Postgres Database* |   basic compute gen5 & basic storage  |       $1.45       |
+| *Azure Service Bus*   |      --  |     < $0.01         |
+| *Azure App Service Plan* | Basic Tier | < $0.0.1 |
+| *Azure App Service*                   |      Free Tier   |       $0       |
+| *Azure Storage Account* | bandwidth & tables & tiered block blob | < $0.01 |
+| *Azure Cache for Redis* | Basic tier | $0.22 |
+| *SendGrid for Azure* | Free Tier | $0 |
+
 ## Screenshots
 Please take a look at the folder `screenshots`, there we have all available screenshots of the app and environment.
 
@@ -123,5 +159,9 @@ Please take a look at the folder `screenshots`, there we have all available scre
 
          File: `screenshots/app_after_sending_notification_full_view.png`
 
-## Architecture Explanation
-This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+#### And more,
+
+We also have integrated with Azure Redis Cache and Azure SendGrid Api.
+
+- `screenshots/app_redis_cache_view.png`
+- `screenshots/app_sendgrid_view.png`

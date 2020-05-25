@@ -16,6 +16,8 @@ class BaseConfig:
     SERVICE_BUS_QUEUE_NAME ='nd081-c3-notification-queue'
     ADMIN_EMAIL_ADDRESS: 'info@techconf.com'
     SENDGRID_API_KEY = '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"'
+    REDIS_PKEY = 'hiV87KBKhSxnRVHxY+EjTccbMHFr9O4CwrTkc+85Zqo='
+    REDIS_HOST = 'nd081-c3-cache0001.redis.cache.windows.net'
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True

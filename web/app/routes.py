@@ -1,10 +1,11 @@
-from app import app, db, queue_client
+from app import app, db, queue_client, cache
 from datetime import datetime
 from app.models import Attendee, Conference, Notification
 from flask import render_template, session, request, redirect, url_for, flash, make_response, session
 from azure.servicebus import Message
 import logging
 
+registrationCacheMessageKey = 'message'
 
 @app.route('/')
 def index():
@@ -29,17 +30,16 @@ def registration():
         try:
             db.session.add(attendee)
             db.session.commit()
-            session['message'] = 'Thank you, {} {}, for registering!'.format(
-                attendee.first_name, attendee.last_name)
+            cache.push(registrationCacheMessageKey, 'Thank you, {} {}, for registering!'.format(
+                attendee.first_name, attendee.last_name))
             return redirect('/Registration')
         except:
             logging.error('Error occured while saving your information')
 
     else:
-        if 'message' in session:
-            message = session['message']
-            session.pop('message', None)
-            return render_template('registration.html', message=message)
+        if cache.exists(registrationCacheMessageKey):
+            message = cache.peak(registrationCacheMessageKey)
+            return render_template('registration.html', message=str(message))
         else:
             return render_template('registration.html')
 
